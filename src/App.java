@@ -1,14 +1,18 @@
-import java.util.ArrayList;
-
-import dao.CardDAO;
-import models.Card;
+import controllers.CardController;
+import webserver.WebServer;
+import webserver.WebServerContext;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        CardDAO cardDAO = new CardDAO();
-        ArrayList<Card> cards = cardDAO.findAll();
-        for (Card card : cards) {
-            System.out.println(card.idCard() + " " + card.value());
-        }
+        //Utilisation de WebServer
+        WebServer webserver = new WebServer();
+        webserver.listen(8080);
+
+        //Créer une route GET
+        webserver.getRouter().get(
+        "/cardController",
+        (WebServerContext context) -> { CardController.findAll(context); }
+        );
+
     }
 }
