@@ -1,11 +1,11 @@
 package models;
 
+import java.util.ArrayList;
+
 public record Game(
     int idGame,
-    String redSpymaster,
-    String redOperative,
-    int	redScore,
-    String blueSpymaster,
-    String blueOperative,
-    int blueScore	
+    String spymaster,
+    String operative,
+    int score,
+    ArrayList<Deck> deck
 ) {}

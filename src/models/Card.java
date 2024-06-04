@@ -1,6 +1,6 @@
 package models;
 
 public record Card(
-    int id,
+    int idCard,
     String value
 ){}
