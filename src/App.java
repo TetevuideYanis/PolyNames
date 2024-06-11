@@ -1,4 +1,5 @@
 import controllers.CardController;
+import controllers.InstanceController;
 import webserver.WebServer;
 import webserver.WebServerContext;
 
@@ -10,8 +11,8 @@ public class App {
 
         //Créer une route GET
         webserver.getRouter().get(
-        "/cardController",
-        (WebServerContext context) -> { CardController.findAll(context); }
+        "/createInstance",
+        (WebServerContext context) -> { InstanceController.createInstance(context); }
         );
 
     }

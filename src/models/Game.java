@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public record Game(
     int idGame,
-    String spymaster,
-    String operative,
     int score,
+    String turn,
     ArrayList<Deck> deck
 ) {}

@@ -20,7 +20,7 @@ public class GameDAO {
             ResultSet rs = ps.executeQuery();
             rs.next();
             deckDAO = new DeckDAO();
-            game = new Game(rs.getInt("idGame"), rs.getString("spymaster"), rs.getString("operative"), rs.getInt("score"), deckDAO.getDeckByIdGame(idGame));
+            game = new Game(rs.getInt("idGame"), rs.getInt("score"), rs.getString("turn"), deckDAO.getDeckByIdGame(idGame));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
