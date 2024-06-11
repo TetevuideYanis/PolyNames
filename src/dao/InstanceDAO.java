@@ -38,18 +38,4 @@ public class InstanceDAO {
         }
         return result;
     }
-
-    public boolean incrementPlayerNumber(String code){
-        PolyNamesDatabase db = null;
-        boolean result = false;
-        try {
-            db = new PolyNamesDatabase();
-            PreparedStatement ps = db.prepareStatement("UPDATE Instance SET playerNumber = playerNumber + 1 WHERE code = ?;");
-            ps.setString(1, code);
-            result = ps.execute();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return result;
-    }
 }

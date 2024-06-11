@@ -36,16 +36,5 @@ public class InstanceController {
         }
         return sb.toString();
     }
-
-    public static void incrementPlayerNumber(WebServerContext context){
-        InstanceDAO instanceDAO = new InstanceDAO();
-        try {
-            String code = context.getRequest().getParam("code");
-            boolean rs = !instanceDAO.incrementPlayerNumber(code);
-            if(rs) context.getResponse().ok("Succès");
-        } catch (Exception e) {
-            context.getResponse().serverError(e.getMessage());
-        }  
-    }
 }
 

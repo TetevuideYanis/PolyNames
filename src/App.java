@@ -12,12 +12,7 @@ public class App {
         //Créer une route GET
         webserver.getRouter().get(
         "/createInstance",
-        (WebServerContext context) -> { InstanceController.createInstance(context); }
-        );
-
-        webserver.getRouter().post(
-            "/incrementPlayerNumber/:code",
-            (WebServerContext context) -> { InstanceController.incrementPlayerNumber(context); }
+            (WebServerContext context) -> { InstanceController.createInstance(context); }
         );
     }
 }

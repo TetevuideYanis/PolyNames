@@ -10,15 +10,9 @@ async function run(){
     const codeInstanceInput = document.getElementById("codeInstanceInput");
 
     createInstanceButton.addEventListener("click", async () => {
-        const promise = InstanceService.createInstance();
-        promise.then(function(data) {
-            localStorage.setItem("code", data);            
-        }).catch(function(error) {
-            console.error('Erreur lors de la récupération des données : ', error);
-        });
-        const code = localStorage.getItem("code");
-        const promise2 = await InstanceService.incrementPlayerNumber(code);
-        console.log(promise2);
+        const code = await InstanceService.createInstance();
+        localStorage.setItem("code", code);
+        localStorage.setItem("player", "operateur")
     });
     //sseClient.subscribe("bids", pview.updateBid);
 }
