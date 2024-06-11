@@ -15,5 +15,9 @@ public class App {
         (WebServerContext context) -> { InstanceController.createInstance(context); }
         );
 
+        webserver.getRouter().post(
+            "/incrementPlayerNumber/:code",
+            (WebServerContext context) -> { InstanceController.incrementPlayerNumber(context); }
+        );
     }
 }
