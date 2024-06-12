@@ -36,5 +36,29 @@ public class InstanceController {
         }
         return sb.toString();
     }
+
+    public static void getInstance(WebServerContext context){
+        InstanceDAO instanceDAO = new InstanceDAO();
+        boolean rs;
+        String code = context.getRequest().getParam("code");
+        try {
+            rs = instanceDAO.getInstance(code);
+            if(rs){
+                context.getResponse().json(rs);
+            }
+        } catch (Exception e) {
+            context.getResponse().serverError(e.toString());
+        } 
+    }
+
+    public static void changeRoles(WebServerContext context){
+        try {
+            String code = context.getRequest().getParam("code");
+            context.getSSE().emit("role" + code, "");
+            context.getResponse().ok("Changement de roles");
+        } catch (Exception e) {
+            context.getResponse().serverError(e.getMessage());
+        } 
+    }
 }
 

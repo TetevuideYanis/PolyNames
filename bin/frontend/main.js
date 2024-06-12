@@ -1,5 +1,8 @@
 import { InstanceService } from "./services/InstanceService.js";
+import { InstanceView } from "./views/InstanceView.js";
 import { SSEClient } from "./libs/sse-client.js";
+
+const instanceView = new InstanceView();
 
 async function run(){
     const sseClient = new SSEClient("localhost:8080");
@@ -11,10 +14,32 @@ async function run(){
 
     createInstanceButton.addEventListener("click", async () => {
         const code = await InstanceService.createInstance();
-        localStorage.setItem("code", code);
-        localStorage.setItem("player", "operateur")
+        sessionStorage.setItem("code", code);
+        sessionStorage.setItem("player", "player1");
+        sessionStorage.setItem("role", "operateur");
+        instanceView.deleteInstanceChoice();
+        instanceView.createMenu();
+        sseClient.subscribe("role"+code, changeRoles);
     });
-    //sseClient.subscribe("bids", pview.updateBid);
+
+    joinInstanceButton.addEventListener("click", async () => {
+        const code = codeInstanceInput.value;
+        const isCreated = await InstanceService.getInstance(code);
+        if(isCreated){
+            sessionStorage.setItem("code", code);
+            sessionStorage.setItem("player", "player2");
+            sessionStorage.setItem("role", "espion");
+            instanceView.deleteInstanceChoice();
+            instanceView.createMenu();
+            sseClient.subscribe("role"+code, changeRoles);
+        }     
+    });
+}
+
+function changeRoles(){
+    if(sessionStorage.getItem("role") == "espion") sessionStorage.setItem("role", "operateur");
+    else sessionStorage.setItem("role", "espion");
+    instanceView.updateMenu();
 }
 
 run();

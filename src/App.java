@@ -14,5 +14,15 @@ public class App {
         "/createInstance",
             (WebServerContext context) -> { InstanceController.createInstance(context); }
         );
+
+        webserver.getRouter().get(
+        "/getInstance/:code",
+            (WebServerContext context) -> { InstanceController.getInstance(context); }
+        );
+
+        webserver.getRouter().post(
+        "/changeRoles/:code",
+            (WebServerContext context) -> { InstanceController.changeRoles(context); }
+        );
     }
 }
