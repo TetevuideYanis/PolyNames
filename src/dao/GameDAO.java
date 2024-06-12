@@ -19,7 +19,7 @@ public class GameDAO {
             ps.setInt(1, idGame);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            game = new Game(rs.getInt("idGame"), rs.getInt("score"), rs.getString("turn"), DeckController.getDeckByIdGame(idGame));
+            game = new Game(rs.getInt("idGame"), rs.getInt("score"), DeckController.getDeckByIdGame(idGame));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -31,9 +31,8 @@ public class GameDAO {
         boolean result = false;
         try {
             db = new PolyNamesDatabase();
-            PreparedStatement ps = db.prepareStatement("INSERT INTO Game (score, turn) VALUES (?, ?);");
+            PreparedStatement ps = db.prepareStatement("INSERT INTO Game (score) VALUES (?);");
             ps.setInt(1, 0);
-            ps.setString(2, "operateur");
             result = ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);

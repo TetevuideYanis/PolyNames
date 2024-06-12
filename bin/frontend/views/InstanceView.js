@@ -30,6 +30,7 @@ export class InstanceView{
             play.textContent = "Lancer une partie";
             play.addEventListener("click", async () => {
                 await GameService.createGame(sessionStorage.getItem("code"));
+                this.deleteMenu();
             });
 
             body.appendChild(changeRole);
@@ -40,5 +41,13 @@ export class InstanceView{
     updateMenu(){
         const role = document.getElementById("role");
         role.innerHTML = "Rôle : " + sessionStorage.getItem("role");
+    }
+
+    deleteMenu(){
+        const body = document.getElementsByTagName("body")[0];
+        if(sessionStorage.getItem("player") === "player1"){
+            body.removeChild(document.getElementById("changeRoles"));
+            body.removeChild(document.getElementById("play"));
+        }        
     }
 }

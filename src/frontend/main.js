@@ -19,6 +19,7 @@ async function run(){
         sessionStorage.setItem("code", code);
         sessionStorage.setItem("player", "player1");
         sessionStorage.setItem("role", "operateur");
+        sessionStorage.setItem("turn", true);
         instanceView.deleteInstanceChoice();
         instanceView.createMenu();
         sseClient.subscribe("role"+code, changeRoles);
@@ -32,16 +33,24 @@ async function run(){
             sessionStorage.setItem("code", code);
             sessionStorage.setItem("player", "player2");
             sessionStorage.setItem("role", "espion");
+            sessionStorage.setItem("turn", false);
             instanceView.deleteInstanceChoice();
             instanceView.createMenu();
             sseClient.subscribe("role"+code, changeRoles);
+            sseClient.subscribe("gameChanged"+code, gameView.displayGame);
         }     
     });
 }
 
 function changeRoles(){
-    if(sessionStorage.getItem("role") == "espion") sessionStorage.setItem("role", "operateur");
-    else sessionStorage.setItem("role", "espion");
+    if(sessionStorage.getItem("role") == "espion"){
+        sessionStorage.setItem("turn", true);
+        sessionStorage.setItem("role", "operateur");
+    } 
+    else{
+        sessionStorage.setItem("turn", false);
+        sessionStorage.setItem("role", "espion");
+    } 
     instanceView.updateMenu();
 }
 

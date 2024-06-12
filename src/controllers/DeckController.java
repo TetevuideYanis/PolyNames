@@ -20,15 +20,15 @@ public class DeckController {
         for(int i = 1; i < 26; i++) {
             String color;
             if(colors.contains(i) && n < 8){
-                color = "#0000ff";
+                color = "#3498DB";
                 n+=1;
             } 
             else if(colors.contains(i) && n == 8){
-                color = "#000000";
+                color = "#17202A";
                 n+=1;
             }
             else{
-                color = "#ffffff";
+                color = "#FAD7A0";
             }
             try {
                 deckDAO.createDeck(idGame, cards.get(i-1).idCard(), color);
