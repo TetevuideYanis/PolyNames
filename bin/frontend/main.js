@@ -1,8 +1,10 @@
 import { InstanceService } from "./services/InstanceService.js";
 import { InstanceView } from "./views/InstanceView.js";
 import { SSEClient } from "./libs/sse-client.js";
+import { GameView } from "./views/GameView.js";
 
 const instanceView = new InstanceView();
+const gameView = new GameView();
 
 async function run(){
     const sseClient = new SSEClient("localhost:8080");
@@ -20,6 +22,7 @@ async function run(){
         instanceView.deleteInstanceChoice();
         instanceView.createMenu();
         sseClient.subscribe("role"+code, changeRoles);
+        sseClient.subscribe("gameChanged"+code, gameView.displayGame);
     });
 
     joinInstanceButton.addEventListener("click", async () => {

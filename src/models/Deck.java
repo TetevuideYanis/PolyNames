@@ -2,7 +2,7 @@ package models;
 
 public record Deck(
     int idGame,
-    int idCard,
+    Card card,
     boolean revealed,
     String color
 ) {}

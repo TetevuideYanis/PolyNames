@@ -1,4 +1,5 @@
 import { InstanceService } from "../services/InstanceService.js";
+import { GameService } from "../services/GameService.js";
 
 export class InstanceView{
     constructor(){}
@@ -27,6 +28,9 @@ export class InstanceView{
             const play = document.createElement("button");
             play.id = "play";
             play.textContent = "Lancer une partie";
+            play.addEventListener("click", async () => {
+                await GameService.createGame(sessionStorage.getItem("code"));
+            });
 
             body.appendChild(changeRole);
             body.appendChild(play);
@@ -36,11 +40,5 @@ export class InstanceView{
     updateMenu(){
         const role = document.getElementById("role");
         role.innerHTML = "Rôle : " + sessionStorage.getItem("role");
-    }
-
-    deleteMenu(){
-        const body = document.getElementsByTagName("body")[0];
-        body.removeChild(document.getElementById("changeRoles"));
-        body.removeChild(document.getElementById("play"));
     }
 }

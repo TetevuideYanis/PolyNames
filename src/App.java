@@ -1,4 +1,4 @@
-import controllers.CardController;
+import controllers.GameController;
 import controllers.InstanceController;
 import webserver.WebServer;
 import webserver.WebServerContext;
@@ -23,6 +23,11 @@ public class App {
         webserver.getRouter().post(
         "/changeRoles/:code",
             (WebServerContext context) -> { InstanceController.changeRoles(context); }
+        );
+
+        webserver.getRouter().get(
+        "/createGame/:code",
+            (WebServerContext context) -> { GameController.createGame(context); }
         );
     }
 }

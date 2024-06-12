@@ -6,5 +6,5 @@ public record Game(
     int idGame,
     int score,
     String turn,
-    ArrayList<Deck> deck
+    ArrayList<Deck> decks
 ) {}

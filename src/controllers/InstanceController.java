@@ -2,11 +2,7 @@ package controllers;
 
 import java.util.Random;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import dao.InstanceDAO;
-import models.Instance;
 import webserver.WebServerContext;
 
 public class InstanceController {
@@ -59,6 +55,15 @@ public class InstanceController {
         } catch (Exception e) {
             context.getResponse().serverError(e.getMessage());
         } 
+    }
+
+    public static void createInitialize(String code, int idGame){
+        try {
+            InstanceDAO instanceDAO = new InstanceDAO();
+            instanceDAO.createInitialize(code, idGame);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 
