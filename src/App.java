@@ -29,5 +29,10 @@ public class App {
         "/createGame/:code",
             (WebServerContext context) -> { GameController.createGame(context); }
         );
+
+        webserver.getRouter().post(
+        "/changeTurn/:idGame",
+            (WebServerContext context) -> { GameController.changeTurn(context); }
+        );
     }
 }

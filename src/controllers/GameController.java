@@ -26,4 +26,15 @@ public class GameController {
             context.getResponse().serverError(e.getMessage());
         } 
     }
+
+    public static void changeTurn(WebServerContext context){
+        try {
+            int idGame = Integer.parseInt(context.getRequest().getParam("idGame"));
+            String hint = context.getRequest().extractBody(String.class);
+            context.getSSE().emit("turn" + idGame, hint);
+            context.getResponse().ok("Changement de tour");
+        } catch (Exception e) {
+            context.getResponse().serverError(e.getMessage());
+        } 
+    }
 }
