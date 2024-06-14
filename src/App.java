@@ -30,9 +30,29 @@ public class App {
             (WebServerContext context) -> { GameController.createGame(context); }
         );
 
+        webserver.getRouter().get(
+        "/gameChanged/:idGame",
+            (WebServerContext context) -> { GameController.gameChanged(context); }
+        );
+
         webserver.getRouter().post(
-        "/changeTurn/:idGame",
-            (WebServerContext context) -> { GameController.changeTurn(context); }
+        "/changeTurnOperateur/:idGame/:hint/:nombreCarte",
+            (WebServerContext context) -> { GameController.changeTurnOperateur(context); }
+        );
+
+        webserver.getRouter().post(
+        "/changeTurnEspion/:idGame/:score",
+            (WebServerContext context) -> { GameController.changeTurnEspion(context); }
+        );
+
+        webserver.getRouter().post(
+        "/turnCard/:idGame/:cardValue",
+            (WebServerContext context) -> { GameController.turnCard(context); }
+        );
+
+        webserver.getRouter().post(
+        "/endGame/:code",
+            (WebServerContext context) -> { GameController.endGame(context); }
         );
     }
 }

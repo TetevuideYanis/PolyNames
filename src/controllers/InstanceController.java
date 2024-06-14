@@ -7,6 +7,10 @@ import webserver.WebServerContext;
 
 public class InstanceController {
     
+    /**
+     * Créer une instance 
+     * @param context Le context
+     */
     public static void createInstance(WebServerContext context){
         InstanceDAO instanceDAO = new InstanceDAO();
         String code = InstanceController.generateRandomString();
@@ -21,7 +25,9 @@ public class InstanceController {
         } 
     }
 
-        // Méthode pour générer une chaîne de caractères aléatoire
+    /**
+     * Méthode pour générer une chaîne de caractères aléatoire de 25 caractères
+     */    
     public static String generateRandomString() {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         Random random = new Random();
@@ -33,6 +39,10 @@ public class InstanceController {
         return sb.toString();
     }
 
+    /**
+     * Retourne une instance
+     * @param context Le context
+     */
     public static void getInstance(WebServerContext context){
         InstanceDAO instanceDAO = new InstanceDAO();
         boolean rs;
@@ -47,6 +57,10 @@ public class InstanceController {
         } 
     }
 
+    /**
+     * Notifie le changement de roles
+     * @param context Le context
+     */
     public static void changeRoles(WebServerContext context){
         try {
             String code = context.getRequest().getParam("code");
@@ -57,6 +71,9 @@ public class InstanceController {
         } 
     }
 
+    /**
+     * Ajoute une entrée dans initialize
+     */
     public static void createInitialize(String code, int idGame){
         try {
             InstanceDAO instanceDAO = new InstanceDAO();

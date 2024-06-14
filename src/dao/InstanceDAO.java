@@ -7,6 +7,11 @@ import database.PolyNamesDatabase;
 
 public class InstanceDAO {
     
+    /**
+     * Créer une instance
+     * @param code Le code de l'instance
+     * @return un booleen
+     */
     public boolean createInstance(String code){
         PolyNamesDatabase db = null;
         boolean result = false;
@@ -21,6 +26,11 @@ public class InstanceDAO {
         return result;
     }
 
+    /**
+     * Retourne un booleen true si l'instance existe
+     * @param code le code de l'instance 
+     * @return un booleen
+     */
     public boolean getInstance(String code){
         PolyNamesDatabase db = null;
         boolean result = false;
@@ -35,6 +45,12 @@ public class InstanceDAO {
         return result;
     }
 
+    /**
+     * Créer une entrée dans initialize
+     * @param code le code de l'instance
+     * @param idGame l'id de la game
+     * @return un booleen
+     */
     public boolean createInitialize(String code, int idGame){
         PolyNamesDatabase db = null;
         boolean result = false;

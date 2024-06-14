@@ -1,4 +1,9 @@
 export class InstanceService{
+
+    /**
+     * demande u serveur la création d'une instance
+     * @returns une instance
+     */
     static async createInstance() {
         let data = null;
         const response = await fetch("http://localhost:8080/createInstance");
@@ -9,6 +14,11 @@ export class InstanceService{
         return data;
     }
 
+    /**
+     * demande une instance au serveur
+     * @param {int} code le code de l'instance
+     * @returns un booleen
+     */
     static async getInstance(code) {
         let data = null;
         const response = await fetch("http://localhost:8080/getInstance/"+code);
@@ -19,6 +29,11 @@ export class InstanceService{
         return data;
     }
 
+    /**
+     * demande au serveur de changer les roles
+     * @param {int} code le code du lobby
+     * @returns la reponse du serveur
+     */
     static async changeRoles(code){
         let data = null;
         let url = "http://localhost:8080/changeRoles/" + code;
@@ -39,6 +54,11 @@ export class InstanceService{
         return data;
     }
 
+    /**
+     * demande au serveur de creer une game
+     * @param {int} code le code du lobby
+     * @returns la reponse du serveur
+     */
     static async createGame(code){
         let data = null;
         let url = "http://localhost:8080/play/" + code;

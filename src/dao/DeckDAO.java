@@ -11,6 +11,11 @@ import models.Deck;
 
 public class DeckDAO {
     
+    /**
+     * Retourne les decks associés à l'id de game
+     * @param idGame l'id de la game
+     * @return Un arraylist de deck
+     */
     public ArrayList<Deck> getDeckByIdGame(int idGame){
         ArrayList<Deck> decks = new ArrayList<Deck>();
         PolyNamesDatabase db = null;
@@ -28,6 +33,13 @@ public class DeckDAO {
         return decks;
     }
 
+    /**
+     * Créer un deck avec les paramètres donnés
+     * @param idGame l'id de la game
+     * @param idCard l'id de la card
+     * @param color la couleur de la card
+     * @return un booleen
+     */
     public boolean createDeck(int idGame, int idCard, String color){
         PolyNamesDatabase db = null;
         boolean result = false;

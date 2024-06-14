@@ -10,6 +10,10 @@ import models.Card;
 
 public class CardDAO {
 
+    /**
+     * Retourne toutes les card de la bdd
+     * @return Un arraylist de carx
+     */
     public ArrayList<Card> findAll(){
         ArrayList<Card> cards = new ArrayList<Card>();
         PolyNamesDatabase db = null;
@@ -26,6 +30,11 @@ public class CardDAO {
         return cards;
     }
 
+
+    /**
+     * Retourne 25 card aléatoires
+     * @return Un arraylist de card
+     */
     public ArrayList<Card> pickRandomCards(){
         ArrayList<Card> cards = new ArrayList<Card>();
         PolyNamesDatabase db = null;
@@ -42,6 +51,12 @@ public class CardDAO {
         return cards;
     }
 
+
+    /**
+     * Retourne une card avec son id
+     * @param idCard l'id de la card
+     * @return Une card
+     */
     public Card getCardById(int idCard){
         Card card = null;
         PolyNamesDatabase db = null;
